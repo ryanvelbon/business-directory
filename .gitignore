@@ -1,3 +1,4 @@
+/bootstrap/ssr
 /node_modules
 /public/build
 /public/hot
@@ -14,3 +15,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# my ignores
+_README.md
