@@ -32,4 +32,8 @@ Route::get('/companies', function () {
     return Inertia::render('Companies');
 })->name('companies.index');
 
+Route::get('/community', function () {
+    return Inertia::render('Community');
+})->name('users.index');
+
 require __DIR__.'/auth.php';
