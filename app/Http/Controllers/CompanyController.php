@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+use App\Models\Company;
+use App\Http\Resources\CompanyResource;
 
 class CompanyController extends Controller
 {
@@ -13,7 +17,16 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::orderBy('name', 'asc')->paginate(10);
+
+        return CompanyResource::collection($companies);
+    }
+
+    public function indexPage()
+    {
+        $companies = Company::limit(10)->get();
+
+        return Inertia::render('Companies', ['companies' => $companies]);
     }
 
     /**
