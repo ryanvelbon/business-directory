@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/inertia-vue3'
 
 import DefaultLayout from '@/Layouts/Default.vue'
 import CompanyCard from '@/Components/Company/CompanyCard.vue'
-
+import CategoryFilters from '@/Components/Company/Filters.vue'
 
 defineProps({
   companies: Array,
@@ -23,6 +23,7 @@ defineProps({
       <h2>
         Companies
       </h2>
+      <Filters />
       <section aria-labelledby="companies-heading" class="mt-6">
         <h2 id="companies-heading" class="sr-only">Companies</h2>
 
