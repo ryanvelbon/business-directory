@@ -31,6 +31,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/companies', [CompanyController::class, 'indexPage'])->name('companies.index');
+Route::get('/companies/{id}', [CompanyController::class, 'showPage'])->name('companies.show');
 
 Route::get('/community', function () {
     return Inertia::render('Community');

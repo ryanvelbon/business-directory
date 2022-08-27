@@ -7,9 +7,16 @@ use Inertia\Inertia;
 
 use App\Models\Company;
 use App\Http\Resources\CompanyResource;
+use App\Http\Resources\CompanyCollection;
 
 class CompanyController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | API Layer
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * Display a listing of the resource.
      *
@@ -19,14 +26,7 @@ class CompanyController extends Controller
     {
         $companies = Company::orderBy('name', 'asc')->paginate(10);
 
-        return CompanyResource::collection($companies);
-    }
-
-    public function indexPage()
-    {
-        $companies = Company::limit(10)->get();
-
-        return Inertia::render('Companies', ['companies' => $companies]);
+        return new CompanyCollection($companies);
     }
 
     /**
@@ -48,7 +48,7 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        return new CompanyResource(Company::findOrFail($id));
     }
 
     /**
@@ -70,6 +70,60 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        //
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Web Layer
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Render the index page
+     * 
+     * @return \Inertia\Response
+     */
+    public function indexPage()
+    {
+        $companies = Company::all();
+
+        return Inertia::render('Companies/Index', [
+            'companies' => $companies,
+        ]);
+    }
+
+    /**
+     * Render the show page
+     * 
+     * @return \Inertia\Response
+     */
+    public function showPage($id)
+    {
+        $company = Company::findOrFail($id);
+
+        return Inertia::render('Companies/Show', [
+            'company' => $company
+        ]);
+    }
+
+    /**
+     * Render the create page
+     * 
+     * @return \Inertia\Response
+     */
+    public function createPage()
+    {
+        //
+    }
+
+    /**
+     * Render the edit page
+     * 
+     * @return \Inertia\Response
+     */
+    public function editPage()
     {
         //
     }
