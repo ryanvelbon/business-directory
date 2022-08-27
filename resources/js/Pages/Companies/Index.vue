@@ -3,6 +3,7 @@
 import { Head } from '@inertiajs/inertia-vue3'
 
 import DefaultLayout from '@/Layouts/Default.vue'
+import Pagination from '@/Components/Pagination.vue'
 import CompanyCard from '@/Components/Company/CompanyCard.vue'
 import CategoryFilters from '@/Components/Company/Filters.vue'
 
@@ -33,6 +34,7 @@ defineProps({
           />
         </div>
       </section>
+      <Pagination />
     </template>
   </DefaultLayout>
 </template>
