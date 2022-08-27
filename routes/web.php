@@ -38,3 +38,5 @@ Route::get('/community', function () {
 })->name('users.index');
 
 require __DIR__.'/auth.php';
+
+Route::inertia('about', 'About');
