@@ -1,10 +1,11 @@
-<script>
-export default {
-  name: 'ContactCard',
-  props: {
-    person: Object,
-  },
-}
+<script setup>
+import { MailIcon, PhoneIcon } from '@heroicons/vue/solid'
+
+const name = 'ContactCard'
+const props = defineProps({
+  person: Object,
+})
+
 </script>
 
 <template>

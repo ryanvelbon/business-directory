@@ -1,7 +1,6 @@
 <script setup>
 
 import { Head } from '@inertiajs/inertia-vue3'
-import { MailIcon, PhoneIcon } from '@heroicons/vue/solid'
 
 import DefaultLayout from '@/Layouts/Default.vue'
 import ContactCard from '@/Components/User/ContactCard.vue'
