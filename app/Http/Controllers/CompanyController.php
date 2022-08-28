@@ -87,10 +87,10 @@ class CompanyController extends Controller
      */
     public function indexPage()
     {
-        $companies = Company::all();
+        $collection = new CompanyCollection(Company::paginate(10));
 
         return Inertia::render('Companies/Index', [
-            'companies' => $companies,
+            'results' => $collection
         ]);
     }
 
