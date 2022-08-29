@@ -30,8 +30,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/companies', [CompanyController::class, 'indexPage'])->name('companies.index');
-Route::get('/companies/{id}', [CompanyController::class, 'showPage'])->name('companies.show');
+Route::get('/companies', [CompanyController::class, 'index'])->name('companies.index');
+Route::get('/companies/{id}', [CompanyController::class, 'show'])->name('companies.show');
 
 Route::get('/community', function () {
     return Inertia::render('Community');
@@ -39,4 +39,4 @@ Route::get('/community', function () {
 
 require __DIR__.'/auth.php';
 
-Route::inertia('about', 'About');
+Route::inertia('/about', 'About')->name('about');
