@@ -10,6 +10,23 @@ const props = defineProps({
   hrefNext: String,
 })
 
+const nBtns = 5
+
+function calcPageNumbers(currentPage, lastPage, nBtns) {
+  if(lastPage <= nBtns) {
+    return Array.from({length: lastPage}, (x, i) => i+1)
+  } else if(currentPage <= Math.ceil(nBtns/2)) {
+    return Array.from({length: nBtns}, (x, i) => i+1)
+  } else if(currentPage > (lastPage-Math.ceil(nBtns/2))) {
+    return Array.from({length: nBtns}, (x, i) => lastPage-i).reverse()
+  } else {
+    return Array.from({length:nBtns}, (x, i) => currentPage-Math.floor(nBtns/2)+i)
+  }
+}
+
+const pageNumbers = calcPageNumbers(props.currentPage, props.lastPage, nBtns);
+
+
 </script>
 
 <template>
@@ -27,7 +44,8 @@ const props = defineProps({
           {{ ' ' }}
           to
           {{ ' ' }}
-          <span class="font-medium">{{ currentPage*10 }}</span>
+          <span v-if="currentPage==lastPage" class="font-medium">{{ total }}</span>
+          <span v-else class="font-medium">{{ currentPage*10 }}</span>
           {{ ' ' }}
           of
           {{ ' ' }}
@@ -43,6 +61,13 @@ const props = defineProps({
             <ChevronLeftIcon class="h-5 w-5" aria-hidden="true" />
           </a>
           <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
+
+          <a v-for="i in pageNumbers" href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> {{i}} </a>
+
+
+
+
+          <!--
           <a href="#" aria-current="page" class="z-10 bg-indigo-50 border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 1 </a>
           <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 2 </a>
           <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 3 </a>
@@ -50,6 +75,7 @@ const props = defineProps({
           <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"> 8 </a>
           <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 9 </a>
           <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> 10 </a>
+          -->
           <a :href="hrefNext" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
             <span class="sr-only">Next</span>
             <ChevronRightIcon class="h-5 w-5" aria-hidden="true" />
