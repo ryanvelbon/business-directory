@@ -62,9 +62,14 @@ const pageNumbers = calcPageNumbers(props.currentPage, props.lastPage, nBtns);
           </a>
           <!-- Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" -->
 
-          <a v-for="i in pageNumbers" href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"> {{i}} </a>
-
-
+          <a
+            v-for="i in pageNumbers"
+            href="#"
+            class="relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+            :class="i===currentPage
+              ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
+              : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'"
+          > {{i}} </a>
 
 
           <!--
