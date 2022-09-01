@@ -18,10 +18,13 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $collection = new CompanyCollection(Company::paginate(10));
+        $collection = new CompanyCollection(Company::paginate(10)); // *PENDING* this needs to be same as API controller's index()
+
+        $lastPage = 13; // *PENDING* this needs to be fetched from data.meta.last_page
 
         return Inertia::render('Companies/Index', [
-            'results' => $collection
+            // 'results' => $collection,
+            'lastPage' => $lastPage
         ]);
     }
 
